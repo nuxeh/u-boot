@@ -21,6 +21,15 @@
 # MA 02111-1307 USA
 #
 
+# Avoid funny character set dependencies
+unexport LC_ALL
+LC_COLLATE=C
+LC_NUMERIC=C
+export LC_COLLATE LC_NUMERIC
+
+# http://git.denx.de/?p=u-boot.git;a=blob;f=Makefile;h=ddea53485a1^C16ec80e8e4dc5a526a72fada41d;hb=HEAD#l17
+# http://lists.denx.de/pipermail/u-boot/2012-December/141441.html
+
 VERSION = 2013
 PATCHLEVEL = 01
 SUBLEVEL = 01
