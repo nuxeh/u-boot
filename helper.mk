@@ -35,7 +35,7 @@
 #    line. Next, append "@" at the end and print the line. Finally,
 #    append "~" at the end of line. This will make sense in conjunction
 #    with 6) and 7).
-# 7) Sort the lines. It is imperative to use LC_COLLATE=C here because
+# 7) Sort the lines. It is imperative to use LC_ALL=C here because
 #    with this, the "\a" symbol is first and "~" symbol is last. Any
 #    other symbols fall inbetween. Symbols like "@", which marks the
 #    end of current line (representing current section) and ".", which
@@ -57,7 +57,7 @@ $(1): $(2)
 		-e 's/\.[^\.]\+$$$$//' \
 		-e ':s /^.\+$$$$/ { p;s/^\(.*\)\.[^\.]*$$$$/\1/;b s }' | \
 	sed -n -e 'h;s/$$$$/\a/p;g;s/$$$$/@/p;g;s/$$$$/~/p;' | \
-	LC_COLLATE=C sort -u | \
+	LC_ALL=C sort -u | \
 	sed -n -e '/\a$$$$/ { s/\./_/g;s/\a$$$$/__start = .;/p; }'\
 		-e '/~$$$$/ { s/\./_/g;s/~$$$$/__end = .;/p; }'\
 		-e '/@$$$$/ { s/\(.*\)@$$$$/*(SORT(\1.*));/p }' > $(1)
